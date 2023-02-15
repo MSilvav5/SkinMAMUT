@@ -1,0 +1,20 @@
+DWORD getModuleBaseAddress(DWORD pid, const char* name)
+{
+    int len = MultiByteToWideChar(CP_UTF8, 0, name, -1, NULL, 0);
+    wchar_t* wname = new wchar_t[len];
+    MultiByteToWideChar(CP_UTF8, 0, name, -1, wname, len);
+
+    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, pid);
+    MODULEENTRY32 mEntry;
+    mEntry.dwSize = sizeof(MODULEENTRY32);
+    do
+    {
+        if (!wcscmp(mEntry.szModule, wname))
+        {
+            CloseHandle(snapshot);
+            delete[] wname;
+            return (DWORD)mEntry.modBaseAddr;
+        }
+    } while (Module32Next(snapshot, &mEntry));
+    delete[] wname;
+}
