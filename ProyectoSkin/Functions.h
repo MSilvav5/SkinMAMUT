@@ -344,7 +344,7 @@ void ListaSKIN()
         if (RIFLE_POS == RIFLE_ID.size()) {
             RIFLE_POS = 0;
         }
-        cout << RIFLE_POS << "\n" << RIFLE_ID.size() << endl;
+        cout << RIFLE_POS << "\n" << RIFLE_ID.size() << "\n" << M4A4_LISTA[RIFLE_POS] << endl;
     }
     //PISTOLA
     if (GetAsyncKeyState(VK_F7) & 1)
@@ -354,7 +354,7 @@ void ListaSKIN()
         if (PISTOL_POS == PISTOL_ID.size()) {
             PISTOL_POS = 0;
         }
-        cout << PISTOL_POS << "\n" << PISTOL_ID.size() << endl;
+        cout << PISTOL_POS << "\n" << PISTOL_ID.size() << "\n" << USP_LISTA[PISTOL_POS] << endl; 
     }
 }
 
