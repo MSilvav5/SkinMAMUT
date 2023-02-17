@@ -1,6 +1,8 @@
 #pragma once
 #include "Includes.h"
 #include <iostream>
+#include <random>
+#include <vector>
 
 using namespace std;
 
@@ -131,17 +133,238 @@ UINT GetModelIndexByID(const short knifeID)
     return modelIndex;
 }
 
+int Menu()
+{
+    //aqui irá el menu
+    int choice;
+    int tempID;
+
+    while (true) {
+        system("cls"); // borra la pantalla de la consola
+        cout << "           MENU PRINCIPAL" << endl;
+        cout << "1. CAMBIAR SKIN DE ARMA" << endl;
+        cout << "2. CAMBIAR SKIN DE CHUCHILLO" << endl;
+        cout << "3. SALIR / CONFIRMAR CAMBIOS" << endl;
+        cout << "\nIngrese su eleccion: ";
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            while (true) {
+                system("cls"); // borra la pantalla de la consola
+                cout << "           MENU DE ARMAS" << endl;
+                cout << "1. PISTOLAS" << endl;
+                cout << "2. ESCOPETAS" << endl;
+                cout << "3. RIFLES" << endl;
+                cout << "4. Regresar" << endl;
+                cout << "\nIngrese su eleccion: ";
+                cin >> choice;
+                switch (choice) {
+                case 1:
+                    // codigo para la subopcion 1
+                    while (true) {
+                        system("cls"); // borra la pantalla de la consola
+                        cout << "           MENU DE PISTOLAS" << endl;
+                        cout << "1. GLOCK" << endl;
+                        cout << "2. USP" << endl;
+                        cout << "3. DEAGLE" << endl;
+                        cout << "4. REGRESAR" << endl;
+                        cout << "\nIngrese su eleccion: ";
+                        cin >> choice;
+                        switch (choice) {
+                        case 1:
+                            // codigo para la subsubmenu 1
+                            cout << "INGRESA EL ID DE SKIN || RECOMENDACIONES: 988,957,420,963 " << endl;
+                            cin >> GLOCK_SKIN;
+                            break;
+                        case 2:
+                            // codigo para la subsubmenu 2
+                            cout << "ID DE LA SKIN ||  RECOMENDACIONES: 504,653,1142,1040,705" << endl;
+                            cin >> USP_SKIN;
+                            break;
+                        case 3:
+                            // codigo para la subsubmenu 3
+                            cout << "ID DE LA SKIN ||  RECOMENDACIONES: 764,470,962,757,711,527" << endl;
+                            cin >> DEAGLE_SKIN;
+                            break;
+                        default:
+                            cout << "Opcion invalida. Intentelo de nuevo." << endl;
+                            break;
+                        }
+                        if (choice == 4) {
+                            break;
+                        }
+                        break;
+                    }
+                    break;
+                case 2:
+                    // codigo para la subopcion 2
+                    while (true) {
+                        system("cls"); // borra la pantalla de la consola
+                        cout << "MENU DE SUBOPCIONES 1" << endl;
+                        cout << "1. Subsubmenu 1" << endl;
+                        cout << "2. Subsubmenu 2" << endl;
+                        cout << "3. Regresar" << endl;
+                        cout << "\nIngrese su eleccion: ";
+                        cin >> choice;
+                        switch (choice) {
+                        case 1:
+                            // codigo para la subsubmenu 1
+                            cout << "Ha elegido la subsubmenu 1" << endl;
+                            break;
+                        case 2:
+                            // codigo para la subsubmenu 2
+                            cout << "Ha elegido la subsubmenu 2" << endl;
+                            break;
+                        case 3:
+                            // salir del bucle while interno y volver al submenu
+                            cout << "Volviendo al submenu." << endl;
+                            break;
+                        default:
+                            cout << "Opcion invalida. Intentelo de nuevo." << endl;
+                            break;
+                        }
+                        if (choice == 3) {
+                            break;
+                        }
+                    }
+                    break;
+                case 3:
+                    while (true) {
+                        system("cls"); // borra la pantalla de la consola
+                        cout << "           MENU DE PISTOLAS" << endl;
+                        cout << "1. AK47" << endl;
+                        cout << "2. M4A4" << endl;
+                        cout << "3. M4A4-SILENCIADA" << endl;
+                        cout << "4. AWP" << endl;
+                        cout << "5. REGRESAR" << endl;
+                        cout << "\nIngrese su eleccion: ";
+                        cin >> choice;
+                        switch (choice) {
+                        case 1:
+                            // codigo para la subsubmenu 1
+                            cout << "INGRESA EL ID DE SKIN || RECOMENDACIONES: 675,959,707,801,724,1141,600,490" << endl;
+                            cin >> AK47_SKIN;
+                            break;
+                        case 2:
+                            // codigo para la subsubmenu 2
+                            cout << "ID DE LA SKIN ||  RECOMENDACIONES: 309,695,844,1228,588,255,1041" << endl;
+                            cin >> M4A4_SKIN;
+                            break;
+                        case 3:
+                            // codigo para la subsubmenu 3
+                            cout << "ID DE LA SKIN ||  RECOMENDACIONES: 946,1073,714,984,430,644,548" << endl;
+                            cin >> M4A4S_SKIN;
+                            break;
+                        case 4:
+                            // codigo para la subsubmenu 4
+                            cout << "ID DE LA SKIN ||  RECOMENDACIONES: 756,344,1222,819,803,446,662" << endl;
+                            cin >> AWP_SKIN;
+                            break;
+                        default:
+                            cout << "Opcion invalida. Intentelo de nuevo." << endl;
+                            break;
+                        }
+                        if (choice == 5) {
+                            break;
+                        }
+                        break;
+                    }
+                    break;
+                case 4:
+                    // salir del bucle while interno y volver al menu principal
+                    cout << "Volviendo al menu principal." << endl;
+                    break;
+                default:
+                    cout << "Opcion invalida. Intentelo de nuevo." << endl;
+                    break;
+                }
+                if (choice == 4) {
+                    break;
+                }
+                break;
+            }
+            break;
+        case 2:
+            while (true) {
+                system("cls"); // borra la pantalla de la consola
+                cout << "SUBMENU 2" << endl;
+                cout << "1. Subopcion 1" << endl;
+                cout << "2. Subopcion 2" << endl;
+                cout << "3. Regresar" << endl;
+                cout << "\nIngrese su eleccion: ";
+                cin >> choice;
+                switch (choice) {
+                case 1:
+                    // codigo para la subopcion 1
+                    cout << "Ha elegido la subopcion 1" << endl;
+                    break;
+                case 2:
+                    // codigo para la subopcion 2
+                    cout << "Ha elegido la subopcion 2" << endl;
+                    break;
+                case 3:
+                    // salir del bucle while interno y volver al menu principal
+                    cout << "Volviendo al menu principal." << endl;
+                    break;
+                default:
+                    cout << "Opcion invalida. Intentelo de nuevo." << endl;
+                    break;
+                }
+                if (choice == 3) {
+                    break;
+                }
+            }
+            break;
+        case 3:
+            // salir del programa
+            cout << "Saliendo del programa." << endl;
+            return 0;
+        default:
+            cout << "Opcion invalida. Intentelo de nuevo." << endl;
+            break;
+        }
+    }
+    return 0;
+}
+
 void ForceUpdate()
 {
     DWORD _dwClientState = readMem<DWORD>(engineBase + dwClientState);
     writeMem<int>(_dwClientState + 0x174, -1);
+    cout << "SE FORZO EL CLIENTE" << endl;
 }
 
 void skinChanger()
 {
+    int indice_actual = 0;
+
+
     while (true)
     {
-        std::cout << "skinchanger2" << std::endl;
+        bool EXIT_MENU = false;
+        if (GetAsyncKeyState(VK_F1) & 1)
+        {
+            Menu();
+            EXIT_MENU = true;
+        }
+
+        if (GetAsyncKeyState(VK_F6) & 1)
+        {
+            std::vector<int> lista = { 675,959,707,801,724,1141,600,490 };
+ 
+           
+            // Al presionar el botón, actualizar el índice y la variable AK47_SKIN
+            indice_actual = (indice_actual + 1) % lista.size(); // para volver al inicio de la lista cuando llegamos al final
+            AK47_SKIN = lista[indice_actual];
+
+            // Imprimir el número actual de la lista
+            std::cout << "Número actual de la lista: " << AK47_SKIN << std::endl;
+          
+            EXIT_MENU = true;
+        }
+
+        //std::cout << "skinchanger2" << std::endl;
         auto EnginePointer = readMem<DWORD>(engineBase + dwClientState);
         auto GameState = readMem<int>(EnginePointer + 0x108);
         DWORD localPlayer = readMem<DWORD>(clientBase + dwLocalPlayer);
@@ -168,7 +391,7 @@ void skinChanger()
                 if (weaponID == 0) { continue; } //Weapons
                 else if (weaponID == WEAPON_AK47)
                 {
-                    Paintkit = 959;
+                    Paintkit = AK47_SKIN;
                     Seed = 420;
                     Statrak = 69;
                     Quality = 3;
@@ -177,7 +400,7 @@ void skinChanger()
                 }
                 else if (weaponID == WEAPON_DEAGLE)
                 {
-                    Paintkit = 764;
+                    Paintkit = DEAGLE_SKIN;
                     Seed = 420;
                     Statrak = 69;
                     Quality = 3;
@@ -186,7 +409,7 @@ void skinChanger()
                 }
                 else if (weaponID == WEAPON_GLOCK)
                 {
-                    Paintkit = 988;
+                    Paintkit = GLOCK_SKIN;
                     Seed = 420;
                     Statrak = 69;
                     Quality = 3;
@@ -195,7 +418,7 @@ void skinChanger()
                 }
                 else if (weaponID == WEAPON_USP_SILENCER)
                 {
-                    Paintkit = 504;
+                    Paintkit = USP_SKIN;
                     Seed = 420;
                     Statrak = 69;
                     Quality = 3;
@@ -204,7 +427,7 @@ void skinChanger()
                 }
                 else if (weaponID == WEAPON_AWP)
                 {
-                    Paintkit = 756;
+                    Paintkit = AWP_SKIN;
                     Seed = 420;
                     Statrak = 0;
                     Quality = 3;
@@ -213,7 +436,7 @@ void skinChanger()
                 }
                 else if (weaponID == WEAPON_M4A1_SILENCER)
                 {
-                    Paintkit = 946;
+                    Paintkit = M4A4S_SKIN;
                     Seed = 420;
                     Statrak = 0;
                     Quality = 3;
@@ -303,7 +526,7 @@ void skinChanger()
                 }
                 else if (weaponID == WEAPON_M4A1)
                 {
-                    Paintkit = 309;
+                    Paintkit = M4A4_SKIN;
                     Seed = 420;
                     Statrak = 69;
                     Quality = 3;
@@ -394,10 +617,18 @@ void skinChanger()
 
                 writeMem<DWORD>(knifeViewModel + m_nModelIndex, knifeIndex);
             }
-            if (GetAsyncKeyState(VK_HOME) & 1)
+
+            if (GetAsyncKeyState(VK_F2) & 1)
             {
                 ForceUpdate();
             }
+
+            if (EXIT_MENU)
+            {
+                ForceUpdate();
+                EXIT_MENU = false;
+            }
+
         }
         else
         {
@@ -413,7 +644,7 @@ void otherThreads()
     while (true)
     {
         /* Press HOME Key to Calling update Engine function */
-        if (GetAsyncKeyState(VK_HOME) & 1)
+        if (GetAsyncKeyState(VK_F2) & 1)
         {
             ForceUpdate();
             break;

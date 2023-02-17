@@ -222,6 +222,21 @@ enum weaponDefinitionIndex
 	WEAPON_REVOLVER = 64
 };
 
+//configuracion inicial
+//PISTOLAS
+int GLOCK_SKIN = 988;
+int USP_SKIN = 504;
+int DEAGLE_SKIN = 764;
+//RIFLES
+int AK47_SKIN = 675;
+int M4A4_SKIN = 504;
+int M4A4S_SKIN = 764;
+int AWP_SKIN = 764;
+
+
+//lista de skins
+
+
 HANDLE pHandle;
 DWORD clientBase;
 DWORD engineBase;

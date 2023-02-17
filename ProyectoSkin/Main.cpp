@@ -31,7 +31,7 @@ void createAscii()
     std::cout << "      :: : :    ::   :::  :::  :::  :::       :: :::  ::   :::  ::   :::  :::  :::   :::::::   ::::::::  :::  :::  " << std::endl;
     std::cout << "\n\n" << std::endl;
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
-    std::cout << "                                                                                                            version 2.0" << std::endl;
+    std::cout << "                                                                                       version 2.5 sin contrasena" << std::endl;
     
 }
 
@@ -41,7 +41,7 @@ void consoleMsg(string msg)
     createAscii();
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 94);
     cout << msg;
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 1);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 }
 
 int main()
@@ -58,11 +58,12 @@ int main()
     DWORD processID;
     GetWindowThreadProcessId(hwnd, &processID);
     pHandle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, processID);
-
+    
+    //CONTRASEÑA
     std::cout << "                                 CUAL ES MEJOR CLUB DE DISCORD?" << std::endl;
-    do {
-        std::getline(std::cin, input);
-    } while (input != password);
+    //do {
+    //    std::getline(std::cin, input);
+    //} while (input != password);
 
     //Get Csgo Window
     consoleMsg("Waiting for CS:GO to open...");
@@ -103,7 +104,7 @@ int main()
 
     if (hwnd && processID)
     {
-        consoleMsg("Succesfully Injected... You can press the home button to update skins.");
+        consoleMsg("MAMUTskin Listo... Presiona F2 cuando comienze la ronda.");
     }
 
     auto EnginePointer = readMem<DWORD>(engineBase + dwClientState);
@@ -111,7 +112,5 @@ int main()
     DWORD localPlayer = readMem<DWORD>(clientBase + dwLocalPlayer);
 
     otherThreads();
-
-    std::cout << "VOLVIO DE LA FUNCION" << std::endl;
     skinChanger();
 }

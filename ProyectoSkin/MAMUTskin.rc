@@ -52,7 +52,7 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON1               ICON                    "C:\\Users\\Silverman\\Downloads\\rainbowmam-removebg-preview.ico"
+IDI_ICON1               ICON                    "D:\\VisualStudio Proyects\\SkinMAMUT\\rainbowmam-removebg-preview.ico"
 
 #endif    // Español (México) resources
 /////////////////////////////////////////////////////////////////////////////

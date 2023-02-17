@@ -6,4 +6,3 @@
 #include <tlhelp32.h>
 #include "Offsets.h"
 #include "Functions.h"
-#include "Offsets.h"
