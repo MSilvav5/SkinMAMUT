@@ -235,6 +235,16 @@ int AWP_SKIN = 764;
 
 
 //lista de skins
+int indice_actual = 0;
+
+std::vector<int> GLOCK_LISTA = { 988,957,353,963,1227,1016,607 };
+std::vector<int> USP_LISTA = { 675,959,707,801,724,1141,600,490 };
+std::vector<int> DEAGLE_LISTA = { 764,470,962,757,711,527 };
+std::vector<int> AK47_LISTA = { 675,959,707,801,724,1141,600,490 };
+std::vector<int> M4A4_LISTA = { 309,695,844,1228,588,255,1041 };
+std::vector<int> M4A4S_LISTA = { 946,1073,714,984,430,644,548 };
+std::vector<int> AWP_LISTA = { 756,344,1222,819,803,446,662 };
+
 
 
 HANDLE pHandle;
@@ -242,4 +252,9 @@ DWORD clientBase;
 DWORD engineBase;
 UINT knifeIndex = 0;
 
+bool EXIT_MENU = false;
 bool isGetted = false;
+int RIFLE_POS = 0;
+int PISTOL_POS = 0;
+std::vector<int> RIFLE_ID;
+std::vector<int> PISTOL_ID;

@@ -137,7 +137,6 @@ int Menu()
 {
     //aqui irá el menu
     int choice;
-    int tempID;
 
     while (true) {
         system("cls"); // borra la pantalla de la consola
@@ -335,36 +334,44 @@ void ForceUpdate()
     cout << "SE FORZO EL CLIENTE" << endl;
 }
 
+void ListaSKIN()
+{
+    //RIFLE
+    if (GetAsyncKeyState(VK_F6) & 1)
+    {
+        RIFLE_POS = RIFLE_POS + 1;
+        EXIT_MENU = true;
+        if (RIFLE_POS == RIFLE_ID.size()) {
+            RIFLE_POS = 0;
+        }
+        cout << RIFLE_POS << "\n" << RIFLE_ID.size() << endl;
+    }
+    //PISTOLA
+    if (GetAsyncKeyState(VK_F7) & 1)
+    {
+        PISTOL_POS = PISTOL_POS + 1;
+        EXIT_MENU = true;
+        if (PISTOL_POS == PISTOL_ID.size()) {
+            PISTOL_POS = 0;
+        }
+        cout << PISTOL_POS << "\n" << PISTOL_ID.size() << endl;
+    }
+}
+
+
+
 void skinChanger()
 {
-    int indice_actual = 0;
-
-
+    
     while (true)
     {
-        bool EXIT_MENU = false;
+        EXIT_MENU = false;
         if (GetAsyncKeyState(VK_F1) & 1)
         {
             Menu();
             EXIT_MENU = true;
         }
-
-        if (GetAsyncKeyState(VK_F6) & 1)
-        {
-            std::vector<int> lista = { 675,959,707,801,724,1141,600,490 };
- 
-           
-            // Al presionar el botón, actualizar el índice y la variable AK47_SKIN
-            indice_actual = (indice_actual + 1) % lista.size(); // para volver al inicio de la lista cuando llegamos al final
-            AK47_SKIN = lista[indice_actual];
-
-            // Imprimir el número actual de la lista
-            std::cout << "Número actual de la lista: " << AK47_SKIN << std::endl;
-          
-            EXIT_MENU = true;
-        }
-
-        //std::cout << "skinchanger2" << std::endl;
+        
         auto EnginePointer = readMem<DWORD>(engineBase + dwClientState);
         auto GameState = readMem<int>(EnginePointer + 0x108);
         DWORD localPlayer = readMem<DWORD>(clientBase + dwLocalPlayer);
@@ -380,7 +387,6 @@ void skinChanger()
                 if (weaponEntity == 0) { continue; }
 
                 short weaponID = readMem<int>(weaponEntity + m_iItemDefinitionIndex);
-
                 DWORD Paintkit = 0;
                 DWORD Seed = 0;
                 DWORD Statrak = 0;
@@ -389,27 +395,11 @@ void skinChanger()
                 char CustomName[20] = "";
 
                 if (weaponID == 0) { continue; } //Weapons
-                else if (weaponID == WEAPON_AK47)
+                 else if (weaponID == WEAPON_GLOCK)
                 {
-                    Paintkit = AK47_SKIN;
-                    Seed = 420;
-                    Statrak = 69;
-                    Quality = 3;
-                    Wear = 0.0063f;
-                    strcpy_s(CustomName, "");
-                }
-                else if (weaponID == WEAPON_DEAGLE)
-                {
-                    Paintkit = DEAGLE_SKIN;
-                    Seed = 420;
-                    Statrak = 69;
-                    Quality = 3;
-                    Wear = 0.0063f;
-                    strcpy_s(CustomName, "");
-                }
-                else if (weaponID == WEAPON_GLOCK)
-                {
-                    Paintkit = GLOCK_SKIN;
+                    PISTOL_ID = GLOCK_LISTA;
+                    ListaSKIN();
+                    Paintkit = GLOCK_LISTA[PISTOL_POS];
                     Seed = 420;
                     Statrak = 69;
                     Quality = 3;
@@ -418,7 +408,31 @@ void skinChanger()
                 }
                 else if (weaponID == WEAPON_USP_SILENCER)
                 {
-                    Paintkit = USP_SKIN;
+                    PISTOL_ID = USP_LISTA;
+                    ListaSKIN();
+                    Paintkit = USP_LISTA[PISTOL_POS];
+                    Seed = 420;
+                    Statrak = 69;
+                    Quality = 3;
+                    Wear = 0.0063f;
+                    strcpy_s(CustomName, "");
+                }
+                else if (weaponID == WEAPON_DEAGLE)
+                {
+                    PISTOL_ID = DEAGLE_LISTA;
+                    ListaSKIN();
+                    Paintkit = DEAGLE_LISTA[PISTOL_POS];
+                    Seed = 420;
+                    Statrak = 69;
+                    Quality = 3;
+                    Wear = 0.0063f;
+                    strcpy_s(CustomName, "");
+                }
+                else if (weaponID == WEAPON_AK47)
+                {
+                    RIFLE_ID = AK47_LISTA;
+                    ListaSKIN();
+                    Paintkit = AK47_LISTA[RIFLE_POS];
                     Seed = 420;
                     Statrak = 69;
                     Quality = 3;
@@ -427,16 +441,31 @@ void skinChanger()
                 }
                 else if (weaponID == WEAPON_AWP)
                 {
-                    Paintkit = AWP_SKIN;
+                    RIFLE_ID = AWP_LISTA;
+                    ListaSKIN();
+                    Paintkit = AWP_LISTA[RIFLE_POS];
                     Seed = 420;
                     Statrak = 0;
                     Quality = 3;
                     Wear = 0.0063f;
                     strcpy_s(CustomName, "");
                 }
+                else if (weaponID == WEAPON_M4A1)
+                {
+                    RIFLE_ID = M4A4_LISTA;
+                    ListaSKIN();
+                    Paintkit = M4A4_LISTA[RIFLE_POS];
+                    Seed = 420;
+                    Statrak = 69;
+                    Quality = 3;
+                    Wear = 0.0063f;
+                    strcpy_s(CustomName, "");
+                }
                 else if (weaponID == WEAPON_M4A1_SILENCER)
                 {
-                    Paintkit = M4A4S_SKIN;
+                    RIFLE_ID = M4A4S_LISTA;
+                    ListaSKIN();
+                    Paintkit = M4A4S_LISTA[RIFLE_POS];
                     Seed = 420;
                     Statrak = 0;
                     Quality = 3;
@@ -518,15 +547,6 @@ void skinChanger()
                 else if (weaponID == WEAPON_GALILAR)
                 {
                     Paintkit = 379;
-                    Seed = 420;
-                    Statrak = 69;
-                    Quality = 3;
-                    Wear = 0.0063f;
-                    strcpy_s(CustomName, "");
-                }
-                else if (weaponID == WEAPON_M4A1)
-                {
-                    Paintkit = M4A4_SKIN;
                     Seed = 420;
                     Statrak = 69;
                     Quality = 3;
