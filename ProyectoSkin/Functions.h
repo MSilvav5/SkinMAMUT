@@ -3,6 +3,7 @@
 #include <iostream>
 #include <random>
 #include <vector>
+#include <ctime>
 
 using namespace std;
 
@@ -354,7 +355,7 @@ void ListaSKIN()
         if (PISTOL_POS == PISTOL_ID.size()) {
             PISTOL_POS = 0;
         }
-        cout << PISTOL_POS << "\n" << PISTOL_ID.size() << "\n" << USP_LISTA[PISTOL_POS] << endl; 
+        cout << PISTOL_POS << "\n" << PISTOL_ID.size() << "\n" << USP_LISTA[PISTOL_POS] << endl;
     }
 }
 
@@ -362,16 +363,16 @@ void ListaSKIN()
 
 void skinChanger()
 {
-    
+
     while (true)
     {
-        EXIT_MENU = false;
-        if (GetAsyncKeyState(VK_F1) & 1)
-        {
-            Menu();
-            EXIT_MENU = true;
-        }
-        
+        //EXIT_MENU = false;
+        //if (GetAsyncKeyState(VK_F1) & 1)
+        //{
+        //    Menu();
+        //    EXIT_MENU = true;
+        //}
+
         auto EnginePointer = readMem<DWORD>(engineBase + dwClientState);
         auto GameState = readMem<int>(EnginePointer + 0x108);
         DWORD localPlayer = readMem<DWORD>(clientBase + dwLocalPlayer);
@@ -395,7 +396,7 @@ void skinChanger()
                 char CustomName[20] = "";
 
                 if (weaponID == 0) { continue; } //Weapons
-                 else if (weaponID == WEAPON_GLOCK)
+                else if (weaponID == WEAPON_GLOCK)
                 {
                     PISTOL_ID = GLOCK_LISTA;
                     ListaSKIN();
@@ -597,6 +598,12 @@ void skinChanger()
                 if (readMem<int>(weaponEntity + m_iItemIDHigh) != -1)
                 {
                     writeMem<int>(weaponEntity + m_iItemIDHigh, -1);
+
+                    if (FORCE)
+                    {
+                        EXIT_MENU = true;
+                        cout << "FORCE=  " << FORCE << std::endl;
+                    }
                 }
                 writeMem<int>(weaponEntity + m_iAccountID, accountID);
                 writeMem<DWORD>(weaponEntity + m_nFallbackPaintKit, Paintkit);
@@ -640,20 +647,42 @@ void skinChanger()
 
             if (GetAsyncKeyState(VK_F2) & 1)
             {
-                ForceUpdate();
+                cout << "presinaste F2" << endl;
+                FORCE = true;
+                EXIT_MENU = true;
+                UPDATE = 0;
             }
 
             if (EXIT_MENU)
             {
+                cout << UPDATE << endl;
+                if (UPDATE == 3) {
+                    FORCE = false;
+                    UPDATE = 0;
+                    EXIT_MENU = false;
+                    continue;
+                }
                 ForceUpdate();
                 EXIT_MENU = false;
+                if (FORCE) {
+                    UPDATE = UPDATE + 1;
+                }
+
             }
+
 
         }
         else
         {
-            isGetted = !isGetted;
-            break;
+            cout << "Esperando partida" << std::endl;
+            while (GameState != 6)
+            {
+                GameState = readMem<int>(EnginePointer + 0x108);
+            }
+
+            for (int i = (time(NULL) + 25); time(NULL) != i; time(NULL));
+            EXIT_MENU = true;
+            isGetted = false;
         }
     }
     std::cout << "SE ROMPIO EL WHILE" << std::endl;
@@ -663,7 +692,6 @@ void otherThreads()
 {
     while (true)
     {
-        /* Press HOME Key to Calling update Engine function */
         if (GetAsyncKeyState(VK_F2) & 1)
         {
             ForceUpdate();

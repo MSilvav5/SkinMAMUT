@@ -237,7 +237,7 @@ int AWP_SKIN = 764;
 //lista de skins
 
 std::vector<int> GLOCK_LISTA = { 988,957,353,963,1227,1016,607 };
-std::vector<int> USP_LISTA = { 504,653,1142,1040,991,657,705};
+std::vector<int> USP_LISTA = { 504,653,1142,1040,991,657,705 };
 std::vector<int> DEAGLE_LISTA = { 764,470,962,757,711,527 };
 std::vector<int> AK47_LISTA = { 675,959,707,801,724,1141,600,490 };
 std::vector<int> M4A4_LISTA = { 309,695,844,1228,588,255,1041 };
@@ -253,6 +253,10 @@ UINT knifeIndex = 0;
 
 bool EXIT_MENU = false;
 bool isGetted = false;
+bool FORCE = false;
+
+
+int UPDATE = 0;
 int RIFLE_POS = 0;
 int PISTOL_POS = 0;
 std::vector<int> RIFLE_ID;
